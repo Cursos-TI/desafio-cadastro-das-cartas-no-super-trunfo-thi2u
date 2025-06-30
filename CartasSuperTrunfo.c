@@ -57,7 +57,7 @@ int main() {
     dens_populacional1 = (float)populacao1/area1;
     
     //    Cálculo do PIB per Capita
-    pib_pcapita1 = (float)pib1*1000000000/populacao1;
+    pib_pcapita1 = (float)pib1*10e8/populacao1;
     
     printf("\nPerfeito, já possuimos os dados da carta 1 em nosso banco de dados.");
 
@@ -97,7 +97,7 @@ int main() {
     dens_populacional2 = (float)populacao2/area2;
     
     //    Cálculo do PIB per Capita
-    pib_pcapita2 = (float)pib2*1000000000/populacao2;
+    pib_pcapita2 = (float)pib2*10e8/populacao2;
 
     /*          Fim do cadastro da carta 2         */
     getchar(); //Aparentemete, após executar o código, verifiquei que sobrou um \n do código anterior e suprimiu scanf
