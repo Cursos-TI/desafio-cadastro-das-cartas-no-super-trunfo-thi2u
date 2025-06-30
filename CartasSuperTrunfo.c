@@ -4,32 +4,31 @@
 // Tema 1 - Cadastro das Cartas
 // Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
 // Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
 
-int main() {    
+int main() { 
+    char confirmacao[4];
     /*      Definição das variáveis para a carta 1      */
     char codigo_cidade1[3], nome1[17], estado1; //Variáveis relacionadas ao codigo e ao nome da cidade, respectivamente, e a variável para o nome do estado.
     int populacao1, num_pnt_turisticos1; //Variáveis para quant. populacional e total de pontos turísticos, respectivamente.
-    float area1, pib1; //Variáveis de área por km² e PIB.
+    float area1, pib1, dens_populacional1, pib_pcapita1; //Variáveis de área por km² e PIB.
     /*                      --x--                       */
 
     /*      Definição das variáveis para a carta 2      */
     char codigo_cidade2[3], nome2[17], estado2; 
     int populacao2, num_pnt_turisticos2;
-    float area2, pib2; 
+    float area2, pib2, dens_populacional2, pib_pcapita2; 
     /*                      --x--                       */
 
     /*          Apresentação          */
     printf("Inicializando o jogo:\nSuper Trunfo de Países\n\nSessão: Cadastro de cartas\n\n");
     printf("Bem-vindo. Nesta sessão do jogo se cadastram as cartas que serão utilizadas no jogo Super Trunfo Países.\n\n");
     printf("Conto com sua participação para responder as seguintes perguntas a fim de cadastrar 2 novas cartas.\nEstá preparado? Digite SIM para darmos início: "); //Trecho de carater simulatório, para gerar tanto entendimento quanto a atenção do usuário para os inputs subsequentes
-    scanf("SIM"); //Devido a proibição de utilização de if, irei utilizar este método para indicar a confirmação do usuário, mas entendo que não é lá muito adequado, entretanto queria manter a validação do usuário.
-    getchar(); //Utilizei para suprimir o "/n" do enter, devido ao uso inadequado da função anterior.
+    scanf("%3s", confirmacao);//Para gerar uma quebra entre os textos e um certo senso de fluidez para o usuário
 
     /*          Cadastro da carta 1         */
     printf("\nVamos começar com a Carta 1:\n\n");
     printf("Primeiramente trataremos sobre o nome do Estado.\nNeste jogo existem 8 estados, listados de A a H.\n\nPara cadastrar uma nova carta escolha um estado de A a H: ");
-    scanf("%c", &estado1);  //coleta de input do usuário para para o nome do estado.
+    scanf(" %c", &estado1);  //coleta de input do usuário para para o nome do estado. Adicionado espaço para não necessitar de getchar()
     printf("\nVejo que escolheu o estado %c, então agora quero que escolha a cidade.\n", estado1);
     printf("Saiba que os estados se dividem em 4 cidades, listados de 01 a 04, incluindo o zero a esquerda.\n\n");  //Explicação da mecânica do jogo no que tange às cidades, bem como do zero a esquerda.
     printf("Portanto escolha um número de 01 a 04: ");
@@ -52,10 +51,22 @@ int main() {
     scanf("%f", &pib1);
     printf("\nPor fim, qual a quantidade de pontos turísticos na cidade? ");
     scanf("%d", &num_pnt_turisticos1);
+
+    //      --> PIB per capita & Densidade Populacional Carta 1 <--
+    //    Cálculo da densidade polucaional
+    dens_populacional1 = (float)populacao1/area1;
+    
+    //    Cálculo do PIB per Capita
+    pib_pcapita1 = (float)pib1*1000000000/populacao1;
+    
     printf("\nPerfeito, já possuimos os dados da carta 1 em nosso banco de dados.");
+
     /*          Fim do cadastro da carta 1         */
+
     getchar(); //para retirar o \n que ficou e estava sendo abstraído pela variável estado
+
     /*          Cadastro da carta 2         */
+
     printf(" Agora vamos ao cadastro da carta 2.\nO processo é bem semelhante, só fique atento para não cadastrar a mesma carta 2 vezes.\n\n");
     printf("Primeiramente vamos ao nome do segundo Estado.\nPara cadastrar a nova carta escolha um estado de A a H: ");
     scanf("%c", &estado2);  //coleta de input do usuário para para o nome do estado.
@@ -80,12 +91,19 @@ int main() {
     scanf("%f", &pib2);
     printf("\nPor fim, qual a quantidade de pontos turísticos da cidade %s? ", nome2);
     scanf("%d", &num_pnt_turisticos2);
+
+    //      --> PIB per capita & Densidade Populacional Carta 1 <--
+    //    Cálculo da densidade polucaional
+    dens_populacional2 = (float)populacao2/area2;
+    
+    //    Cálculo do PIB per Capita
+    pib_pcapita2 = (float)pib2*1000000000/populacao2;
+
     /*          Fim do cadastro da carta 2         */
     getchar(); //Aparentemete, após executar o código, verifiquei que sobrou um \n do código anterior e suprimiu scanf
     printf("\n\nPerfeito!\nAs 2 cartas já estão cadastradas em nosso banco de dados.\nVamos as verificar agora? (Digite SIM para verificar)\n");
     //Voltei a utilizar as 2 funções abaixo para gerar uma quebra entre o momento do cadastro das cartas e sua visualização. Na busca de gerar fluidez para o usuário.
-    scanf("SIM");
-    getchar();
+    scanf("%3s", confirmacao);
 
     /*          Exibição da Carta 1         */
     printf("\nInicializando exibição da Carta 1\n\n");
@@ -96,7 +114,9 @@ int main() {
     printf("População: %d de pessoas\n", populacao1);
     printf("Área: %.2f km²\n", area1);
     printf("PIB: R$ %.2f Bilhões\n", pib1);
-    printf("Número de Pontos Turísticos: %d\n\n", num_pnt_turisticos1);
+    printf("Número de Pontos Turísticos: %d\n", num_pnt_turisticos1);
+    printf("Densidade Populacional: %.2f hab/km²\n", dens_populacional1);
+    printf("PIB per Capita: R$ %.2f\n\n", pib_pcapita1);
     printf("----->      Carta 1: %c%s     <-----\n\n", estado1, codigo_cidade1);
     /*          Exibição da Carta 2         */
     printf("Inicializando exibição da Carta 2\n\n");
@@ -107,7 +127,9 @@ int main() {
     printf("População: %d de pessoas\n", populacao2);
     printf("Área: %.2f km²\n", area2);
     printf("PIB: R$ %.2f Bilhões\n", pib2);
-    printf("Número de Pontos Turísticos: %d\n\n", num_pnt_turisticos2);
+    printf("Número de Pontos Turísticos: %d\n", num_pnt_turisticos2);
+    printf("Densidade Populacional: %.2f hab/km²\n", dens_populacional2);
+    printf("PIB per Capita: R$ %.2f\n\n", pib_pcapita2);
     printf("----->      Carta 2: %c%s     <-----\n\n", estado2, codigo_cidade2);
 
     return 0;
